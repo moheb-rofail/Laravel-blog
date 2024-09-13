@@ -7,3 +7,6 @@ use App\Http\Controllers\PostsController;
 
 Route::get('/', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostsController::class, 'show'])->name('posts.show');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
