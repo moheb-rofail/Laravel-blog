@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<a href="{{route('posts.create')}}" class='btn btn-success btn-lg'>New Post</a>
 <table class="table">
     <thead>
       <tr>
@@ -19,7 +20,7 @@
             <td>{{$post->body}}</td>
             <td>{{$post->user->name}}</td>
             <td>
-                <a href="{{route('posts.show', $post->id)}}">Edit</a>
+                <a href="{{route('posts.show', $post->id)}}">Edit</a> - 
                 <a href="{{route('posts.show', $post->id)}}">Delete</a>
             </td>
         </tr>
