@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('posts.create')}}" class='btn btn-success btn-lg'>New Post</a>
+<a href="{{route('posts.create')}}" class='btn btn-success'>New Post</a>
+
+@if($posts->isNotEmpty())
 <table class="table">
     <thead>
       <tr>
@@ -20,11 +22,19 @@
             <td>{{$post->body}}</td>
             <td>{{$post->user->name}}</td>
             <td>
-                <a href="{{route('posts.show', $post->id)}}">Edit</a> - 
-                <a href="{{route('posts.show', $post->id)}}">Delete</a>
+                <a class="btn btn-primary"  href="{{route('posts.edit', $post->id)}}">Edit</a>
+                <form style="display:inline" method="POST" action="{{route('posts.destroy', $post->id)}}">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger">Delete</button>
+                </form>
             </td>
         </tr>
         @endforeach
+        
     </tbody>
   </table>
+  @else 
+    <div class="p-3"><p>There are no posts yet.</p></div>
+  @endif
 @endsection
